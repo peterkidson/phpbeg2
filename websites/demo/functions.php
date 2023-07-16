@@ -25,4 +25,13 @@ function authorise($condition, $status = KResponse::FORBIDDEN)
 	}
 }
 
+function basepath($path)
+{
+	return BASE_PATH . $path;
+}
 
+function view($path, $vars = [])
+{
+	extract($vars);
+	return basepath('views/' . $path);
+}
