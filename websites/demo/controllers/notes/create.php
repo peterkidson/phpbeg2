@@ -5,8 +5,9 @@ require basepath('Validator.php');
 $config = require basepath('config.php');
 $db = new KDatabase($config['database']);
 
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$errors = [];
 
 	if (! Validator::string($_POST['bodyname'], 1, 100)) {
 		$errors['bodyname'] = 'Size must be >= 1 and <= 100';
