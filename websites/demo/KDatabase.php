@@ -14,7 +14,7 @@ class KDatabase
 		]);
 	}
 
-	public function query($query, $params = [])
+	public function kquery($query, $params = [])
 	{
 		try {
 			$this->stmt = $this->connection->prepare($query);

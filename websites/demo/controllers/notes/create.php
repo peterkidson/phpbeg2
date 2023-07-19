@@ -1,11 +1,9 @@
 <?php
 
-require 'Validator.php';
+require basepath('Validator.php');
 
-$config = require('config.php');
+$config = require basepath('config.php');
 $db = new KDatabase($config['database']);
-
-$heading = "Create Note";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$errors = [];
@@ -15,12 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 	if (empty($errors)) {
-		$db->query("insert into notes(body,userid) values(:body, :userid)", [
+		$db->kquery("insert into notes(body,userid) values(:body, :userid)", [
 			"body" 	=> $_POST["bodyname"],
 			"userid"	=> 1
 		]);
 	}
 }
 
-require 'views/notes/create.view.php';
+view('notes/create.view.php', [
+	'heading' 	=> 'Create Note',
+	'errors'		=> $errors
+]);
 

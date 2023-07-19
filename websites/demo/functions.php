@@ -18,11 +18,21 @@ function urlIs($url)
 	return $_SERVER['REQUEST_URI'] === $url;
 }
 
-function authorise($condition, $status = KResponse::FORBIDDEN)
+function kauthorise($condition, $status = KResponse::FORBIDDEN)
 {
 	if (! $condition) {
 		abort($status);
 	}
 }
 
+function basepath($path)
+{
+	return BASE_PATH . $path;
+}
+
+function view($path, $vars = [])
+{
+	extract($vars);
+	require basepath('views/' . $path);
+}
 
