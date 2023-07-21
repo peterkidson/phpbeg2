@@ -1,5 +1,7 @@
 <?php
 
+use Core\Validator;
+
 require basepath('core/Validator.php');
 
 $config = require basepath('config.php');

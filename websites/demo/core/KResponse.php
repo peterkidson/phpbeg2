@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 class KResponse
 {
 	const NOT_FOUND 	= 404;

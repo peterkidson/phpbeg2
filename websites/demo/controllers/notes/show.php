@@ -1,6 +1,8 @@
 <?php
 
 //require basepath('KResponse.php');
+use Core\KDatabase;
+
 $config = require basepath('config.php');
 $db = new KDatabase($config['database']);
 
