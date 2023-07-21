@@ -1,6 +1,6 @@
 <?php
 
-require basepath('Validator.php');
+require basepath('core/Validator.php');
 
 $config = require basepath('config.php');
 $db = new KDatabase($config['database']);
