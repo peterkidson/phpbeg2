@@ -1,5 +1,7 @@
 <?php
 
+use Core\KResponse;    /// needed for show()
+
 function d($var)
 {
 	echo "<pre>";
