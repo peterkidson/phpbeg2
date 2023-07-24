@@ -7,9 +7,16 @@
 		<p class="mb-4">
 			<a href="/notes" class="text-blue-500 underline">Back</a>
 		</p>
+
 		<p>
 			<?= $note['id'] ?>  <?= htmlspecialchars($note['body']) ?>
 		</p>
+
+		<form class="mt-3" method="post">
+			<input type="hidden" name="id2del" value="<?= $note['id']; ?>">
+			<button class="text-sm text-red-500">Delete</button>
+		</form>
+
 	</div>
 </main>
 

@@ -6,15 +6,26 @@ use Core\KDatabase;
 $config = require basepath('config.php');
 $db = new KDatabase($config['database']);
 
+$userid = 1;
 $noteIdInUrl = $_GET['id'];
 
-$note = $db->kquery("select * from notes where id = :id", [ ':id' => $noteIdInUrl])->kfindOrFail();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {		// for delete
+	$note = $db->kquery("select * from notes where id = :id", [':id' => $noteIdInUrl])->kfindOrFail();
+	kauthorise($note['userid'] === $userid);
 
-$userid = 1;
+	$db->query('delete from notes where id = :id2del', [
+		'id2del' => $_GET['id']
+	])	;
 
-kauthorise($note['userid'] === $userid);
+	header('location: /notes');
+	exit();
+}
+else {
+	$note = $db->kquery("select * from notes where id = :id", [':id' => $noteIdInUrl])->kfindOrFail();
+	kauthorise($note['userid'] === $userid);
 
-view('notes/show.view.php', [
-	'heading' 	=> 'Note',
-	'note'		=> $note
-]);
+	view('notes/show.view.php', [
+		'heading' => 'Note',
+		'note' => $note
+	]);
+}
