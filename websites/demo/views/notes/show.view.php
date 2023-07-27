@@ -13,6 +13,7 @@
 		</p>
 
 		<form class="mt-3" method="post">
+			<input type="hidden" name="_method" value="DELETE">
 			<input type="hidden" name="id2del" value="<?= $note['id']; ?>">
 			<button class="text-sm text-red-500">Delete</button>
 		</form>
