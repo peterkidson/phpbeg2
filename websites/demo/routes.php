@@ -1,16 +1,11 @@
 <?php
 
-//return [
-//	'/' 					=> 'controllers/index.php',
-//	'/about' 			=> 'controllers/about.php',
-//	'/note' 				=> 'controllers/notes/show.php',
-//	'/notes' 			=> 'controllers/notes/index.php',
-//	'/notes/create'	=> 'controllers/notes/create.php',
-//	'/contact'			=> 'controllers/contact.php',
-//];
 
-$router->get		('/', 			'controllers/index.php');
-$router->delete	('/note',		'controllers/notes/destroy.php');
 
-dd($router->routes);
+$router->addGetRoute('/', 				'controllers/index.php');
+$router->addGetRoute('/about', 			'controllers/about.php');
+$router->addGetRoute('/contact', 		'controllers/contact.php');
 
+$router->addGetRoute('/notes', 			'controllers/notes/index.php');
+$router->addGetRoute('/note', 			'controllers/notes/show.php');
+$router->addGetRoute('/notes/create',	'controllers/notes/create.php');

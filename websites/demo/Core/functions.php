@@ -22,9 +22,16 @@ function urlIs($url)
 
 function kauthorise($condition, $status = KResponse::FORBIDDEN)
 {
-	if (! $condition) {
+	if (! $condition ) {
 		abort($status);
 	}
+}
+
+/*protected*/ function abort($code = 404) 	// DUP
+{
+	http_response_code($code);      						// SET the http response code
+	require basepath("views/{$code}.php");		// Need a page for each one
+	die();
 }
 
 function basepath($path)

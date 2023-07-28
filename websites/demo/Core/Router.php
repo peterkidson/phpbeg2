@@ -6,28 +6,28 @@ class Router
 {
 	protected $routes = [];
 
-	public function get($uri,$controller) {
-		$this->generic($uri, $controller, 'GET');
+	public function addGetRoute($uri, $controller) {
+		$this->addRoute($uri, $controller, 'GET');
 	}
 	public function post($uri,$controller) {
-		$this->generic($uri, $controller, 'POST');
+		$this->addRoute($uri, $controller, 'POST');
 	}
 	public function delete($uri,$controller) {
-		$this->generic($uri, $controller, 'DELETE');
+		$this->addRoute($uri, $controller, 'DELETE');
 	}
 	public function patch($uri,$controller) {
-		$this->generic($uri, $controller, 'PATCH');
+		$this->addRoute($uri, $controller, 'PATCH');
 	}
 	public function put($uri,$controller) {
-		$this->generic($uri, $controller, 'PUT');
+		$this->addRoute($uri, $controller, 'PUT');
 	}
-	private function generic($uri,$controller,$method) {
-		$this->routes[] = ['url' => $uri, 'controller' => $controller, 'method' => $method];
+	private function addRoute($uri, $controller, $method) {
+		$this->routes[] = ['uri' => $uri, 'controller' => $controller, 'method' => $method];
 	}
 
-	public function route($uri,$route) {
+	public function routeRequest($uri, $method) {
 		foreach ($this->routes as $route) {
-			if ($route['uri'] === $uri) {
+			if ($route['uri'] === $uri  &&  $route['method'] === strtoupper($method) ) {
 				return require basepath($route['controller']);
 			}
 		}
