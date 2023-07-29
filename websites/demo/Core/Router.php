@@ -9,23 +9,23 @@ class Router
 	public function addGetRoute($uri, $controller) {
 		$this->addRoute($uri, $controller, 'GET');
 	}
-	public function post($uri,$controller) {
+	public function addPostRoute($uri,$controller) {
 		$this->addRoute($uri, $controller, 'POST');
 	}
-	public function delete($uri,$controller) {
+	public function addDeleteRoute($uri,$controller) {
 		$this->addRoute($uri, $controller, 'DELETE');
 	}
-	public function patch($uri,$controller) {
+	public function addPatchRoute($uri,$controller) {
 		$this->addRoute($uri, $controller, 'PATCH');
 	}
-	public function put($uri,$controller) {
+	public function addPutRoute($uri,$controller) {
 		$this->addRoute($uri, $controller, 'PUT');
 	}
 	private function addRoute($uri, $controller, $method) {
 		$this->routes[] = ['uri' => $uri, 'controller' => $controller, 'method' => $method];
 	}
 
-	public function routeRequest($uri, $method) {
+	public function routeTheRequest($uri, $method) {
 		foreach ($this->routes as $route) {
 			if ($route['uri'] === $uri  &&  $route['method'] === strtoupper($method) ) {
 				return require basepath($route['controller']);
