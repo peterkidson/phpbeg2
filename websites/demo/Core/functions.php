@@ -15,9 +15,9 @@ function dd($var)
 	die();
 }
 
-function urlIs($url)
+function uriIs($value)
 {
-	return $_SERVER['REQUEST_URI'] === $url;
+	return $_SERVER['REQUEST_URI'] === $value;
 }
 
 function kauthorise($condition, $status = KResponse::FORBIDDEN)
@@ -27,7 +27,7 @@ function kauthorise($condition, $status = KResponse::FORBIDDEN)
 	}
 }
 
-/*protected*/ function abort($code = 404) 	// DUP
+function abort($code = 404)
 {
 	http_response_code($code);      						// SET the http response code
 	require basepath("views/{$code}.php");		// Need a page for each one
@@ -39,9 +39,9 @@ function basepath($path)
 	return BASE_PATH . $path;
 }
 
-function view($path, $vars = [])
+function view($path, $urlParams = [])
 {
-	extract($vars);
+	extract($urlParams);
 	require basepath('views/' . $path);
 }
 

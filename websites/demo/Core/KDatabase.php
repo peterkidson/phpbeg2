@@ -8,7 +8,7 @@ use PDO;
 class KDatabase
 {
 	private $connection;
-	private $stmt;
+	private $statement;
 
 	public function __construct($config, $username = 'root', $pw = '')
 	{
@@ -22,8 +22,8 @@ class KDatabase
 	public function kquery($query, $params = [])
 	{
 		try {
-			$this->stmt = $this->connection->prepare($query);
-			$this->stmt->execute($params);      // PDO statement
+			$this->statement = $this->connection->prepare($query);
+			$this->statement->execute($params);      // PDO statement
 			return $this;
 		} catch (Exception $e) {
 			echo $e->getMessage();
@@ -32,7 +32,7 @@ class KDatabase
 
 	public function kfetch()
 	{
-		return $this->stmt->fetch();
+		return $this->statement->fetch();
 	}
 
 	public function kfindOrFail()
@@ -46,7 +46,7 @@ class KDatabase
 
 	public function kfetchAll()
 	{
-		return $this->stmt->fetchAll();
+		return $this->statement->fetchAll();
 	}
 }
 
