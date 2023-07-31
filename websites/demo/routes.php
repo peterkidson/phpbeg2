@@ -10,5 +10,5 @@ $router->addGetRoute		('/notes', 			'controllers/notes/index.php');
 $router->addGetRoute		('/note', 				'controllers/notes/show.php');
 $router->addGetRoute		('/notes/create',	'controllers/notes/create.php');
 
-$router->addPostRoute	('/notes/create',	'controllers/notes/create.php');		// Not mentioned in lesson or GitHub??
-$router->addDeleteRoute	('/note',				'controllers/notes/show.php');		// Not mentioned in lesson or GitHub??
+$router->addPostRoute	('/notes/create',	'controllers/notes/create.php');			// Not mentioned in lesson or GitHub??
+$router->addDeleteRoute	('/note',				'controllers/notes/destroy.php');		// Not mentioned in lesson or GitHub??
