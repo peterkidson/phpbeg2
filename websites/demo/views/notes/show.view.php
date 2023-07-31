@@ -14,7 +14,7 @@
 
 		<form class="mt-3" method="post">
 			<input type="hidden" name="_pseudoMethod" value="DELETE">
-			<input type="hidden" name="id2del" value="<?= $note['id']; ?>">
+			<input type="hidden" name="idFromTheForm" value="<?= $note['id']; ?>">
 			<button class="text-sm text-red-500">Delete</button>
 		</form>
 
