@@ -8,7 +8,7 @@ $router->addGetRoute		('/contact', 			'controllers/contact.php');
 
 $router->addGetRoute		('/notes', 			'controllers/notes/index.php');
 $router->addGetRoute		('/note', 				'controllers/notes/show.php');
-//$router->addGetRoute		('/notes/create',	'controllers/notes/create.php');
+$router->addGetRoute		('/notes/create',	'controllers/notes/create.php');
 
 $router->addPostRoute	('/notes',				'controllers/notes/store.php');
 
