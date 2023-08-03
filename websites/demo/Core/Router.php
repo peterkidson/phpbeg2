@@ -29,7 +29,8 @@ class Router
 		foreach ($this->routes as $route) {
 			if (	$route['uri']		=== $uri
 				&&	$route['method']	=== strtoupper($method) ) {
-				return require basepath($route['controller']);
+				$controller = $route['controller'];
+				return require basepath($controller);
 			}
 		}
 		$this->abort2();

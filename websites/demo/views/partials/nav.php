@@ -10,16 +10,16 @@
 					<div class="ml-10 flex items-baseline space-x-4">
 
 						<a href="/"
-							class="<?= uriIs('/') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
+							class="<?= requestUri('/') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
 								hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
 						<a href="/about"
-							class="<?= uriIs('/about') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
+							class="<?= requestUri('/about') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
 								hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
 						<a href="/notes"
-							class="<?= uriIs('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
+							class="<?= requestUri('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
 								hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
 						<a href="/contact"
-							class="<?= uriIs('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
+							class="<?= requestUri('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
 								hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
 
 					</div>
