@@ -4,6 +4,10 @@ namespace Core;
 
 class Router
 {
+	public function __construct()
+	{
+	}
+
 	private $routes = [];
 
 	public function addGetRoute($uri, $controller) {
@@ -25,10 +29,10 @@ class Router
 		$this->routes[] = ['uri' => $uri, 'controller' => $controller, 'method' => $method];
 	}
 
-	public function routeTheRequest($uri, $method) {
+	public function routeTheRequest($puri, $pmethod) {
 		foreach ($this->routes as $route) {
-			if (	$route['uri']		=== $uri
-				&&	$route['method']	=== strtoupper($method) ) {
+			if (	$route['uri']		=== $puri
+				&&	$route['method']	=== strtoupper($pmethod) ) {
 				$controller = $route['controller'];
 				return require basepath($controller);
 			}

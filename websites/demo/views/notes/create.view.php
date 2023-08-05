@@ -11,18 +11,18 @@
 						<div class="shadow sm:overflow-hidden sm:rounded-md">
 							<div class="space-y-6 bg-white px-4 py-5 sm:p-6">
 								<div>
-									<label for="bodyid" class="block text-sm font-medium text-gray-700">Body Label</label>
+									<label for="textarea_id" class="block text-sm font-medium text-gray-700">Body Label</label>
 									<div class="mt-1">
 										<textarea
-											id				= "bodyid"
-											name			= "bodyname"
+											id				= "textarea_id"
+											name			= "textarea_name"
 											rows			= "3"
 											class			= "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-											placeholder	= "Here's an idea for a note..."
-										><?= $_POST['bodyname'] ?? '' ?></textarea>
+											placeholder	= "Idea for a note..."
+										><?= $_POST['textarea_name'] ?? '' ?></textarea>
 
-										<?php if (isset($errors['bodyname'])) : ?>
-											<p class="text-red-500 text-xs mt-2"><?= $errors['bodyname'] ?></p>
+										<?php if (isset($errors['text_bodyname'])) : ?>
+											<p class="text-red-500 text-xs mt-2"><?= $errors['textarea_name'] ?></p>
 										<?php endif; ?>
 									</div>
 								</div>
