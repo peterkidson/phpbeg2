@@ -12,6 +12,8 @@ spl_autoload_register(function ($class) {
 $router = new \Core\Router();
 require basepath('add.routes.php');
 
+require basepath('bootstrap.php');
+
 $prequest = $_SERVER['REQUEST_URI'];
 $puri = parse_url($prequest)['path'];
 
