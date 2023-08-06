@@ -4,15 +4,22 @@ namespace Core;
 
 class Container
 {
-	protected $bindings = [];
+	protected $m_bindings = [];
 
 	public function bind( $key, $resolver )
 	{
-		$this->bindings[$key] = $resolver;
+		$this->m_bindings[$key] = $resolver;
 	}
 
-	public function resolve()
+	public function resolve($key)
 	{
+		if (! array_key_exists($key,$this->m_bindings)) {
+			throw new \Exception("No binding '$key' found");
+		}
+		else {
+			$resolver = $this->m_bindings[$key];
 
+			return call_user_func($resolver);
+		}
 	}
 }
