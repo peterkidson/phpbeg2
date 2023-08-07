@@ -1,7 +1,6 @@
 <?php
 
 
-
 $router->addGetRoute		('/', 						'controllers/index.php');
 $router->addGetRoute		('/about', 				'controllers/about.php');
 $router->addGetRoute		('/contact', 				'controllers/contact.php');

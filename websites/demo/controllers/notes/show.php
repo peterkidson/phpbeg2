@@ -1,9 +1,9 @@
 <?php
 
+use Core\App;
 use Core\KDatabase;
 
-$config = require basepath('config.php');
-$db = new KDatabase($config['database']);
+$db = App::container()->resolve(KDatabase::class);
 
 $userid = 1;
 

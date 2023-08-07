@@ -6,12 +6,10 @@ Use Core\KDatabase;
 
 $container = new Container();
 
-$container->bind('Core\Database', function () {
+$container->bind(KDatabase::class, function () {
 	$config = require basepath('config.php');
 	$db = new KDatabase($config['database']);
 	return $db;
 });
-
-$db = $container->resolve('Core\Database');
 
 App::setContainer($container);
