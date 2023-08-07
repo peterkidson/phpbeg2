@@ -7,8 +7,8 @@ use PDO;
 
 class KDatabase
 {
-	private $connection;
-	private $statement;
+	protected $connection;
+	protected $statement;
 
 	public function __construct($config, $username = 'root', $pw = '')
 	{
@@ -17,6 +17,7 @@ class KDatabase
 		$this->connection = new PDO($dsn, $username, $pw, [
 			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 		]);
+		echo "hello";
 	}
 
 	public function kquery($query, $params = [])

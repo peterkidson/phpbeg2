@@ -19,7 +19,8 @@ class Container
 		else {
 			$resolver = $this->m_bindings[$key];
 
-			return call_user_func($resolver);
+			$cuf = call_user_func($resolver);
+			return $cuf;
 		}
 	}
 }
