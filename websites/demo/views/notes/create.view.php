@@ -11,7 +11,7 @@
 						<div class="shadow sm:overflow-hidden sm:rounded-md">
 							<div class="space-y-6 bg-white px-4 py-5 sm:p-6">
 								<div>
-									<label for="textarea_id" class="block text-sm font-medium text-gray-700">Body Label</label>
+									<label for="textarea_id" class="block text-sm font-medium text-gray-700">Create Body Label</label>
 									<div class="mt-1">
 										<textarea
 											id				= "textarea_id"
