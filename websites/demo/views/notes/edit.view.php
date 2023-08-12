@@ -9,6 +9,7 @@
 
 					<form method="POST" action="/note">
 						<input type="hidden" name="_pseudoMethod" value="PATCH">
+						<input type="hidden" name="id" value="<?= $note['id'] ?>">
 
 						<div class="shadow sm:overflow-hidden sm:rounded-md">
 							<div class="space-y-6 bg-white px-4 py-5 sm:p-6">
@@ -23,8 +24,8 @@
 											placeholder	= "Idea for a note..."
 										><?= $note['body'] ?></textarea>
 
-										<?php if (isset($errors['text_bodyname'])) : ?>
-											<p class="text-red-500 text-xs mt-2"><?= $errors['textarea_name'] ?></p>
+										<?php if (isset($errors['textarea_id'])) : ?>
+											<p class="text-red-500 text-xs mt-2"><?= $errors['textarea_id'] ?></p>
 										<?php endif; ?>
 									</div>
 								</div>

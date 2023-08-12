@@ -21,7 +21,7 @@
 											placeholder	= "Idea for a note..."
 										><?= $_POST['textarea_name'] ?? '' ?></textarea>
 
-										<?php if (isset($errors['text_bodyname'])) : ?>
+										<?php if (isset($errors['textarea_name'])) : ?>
 											<p class="text-red-500 text-xs mt-2"><?= $errors['textarea_name'] ?></p>
 										<?php endif; ?>
 									</div>

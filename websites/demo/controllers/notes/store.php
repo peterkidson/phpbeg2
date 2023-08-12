@@ -9,8 +9,9 @@ $db = App::container()->resolve(KDatabase::class);
 $errors =[];
 
 if (! Validator::string($_POST['textarea_name'], 1, 100)) {
-	$errors['textarea_name'] = 'Size must be >= 1 and <= 100';
+	$errors['textarea_name'] = 'Size must be >= 1 and <= 100 (and not be badnote)';
 }
+
 if (! empty($errors)) {
 	// validation issue
 	return view('notes/create.view.php', [
