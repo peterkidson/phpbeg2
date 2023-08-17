@@ -14,7 +14,9 @@ $router->addGetRoute		('/note/edit', 			'controllers/notes/edit.php');
 $router->addDeleteRoute	('/note',					'controllers/notes/destroy.php');
 $router->addGetRoute		('/zap',					'controllers/notes/zap.php');
 
-$router->addGetRoute		('/notes/create',		'controllers/notes/create.php');
-$router->addPostRoute	('/notes/create',		'controllers/notes/create.php');
+$router->addGetRoute		('/notes/create',		'controllers/notes/create.view.php');xxxxx
+$router->addPostRoute	('/notes/create',		'controllers/notes/create.view.php');
+
+$router->addGetRoute		('/register', 			'controllers/registration/create.php');
 
 

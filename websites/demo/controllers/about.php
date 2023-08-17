@@ -1,5 +1,5 @@
 <?php
 
-echo $_SESSION['name'];
+//session_destroy();
 
 view('about.view.php', ['heading' => 'About']);
