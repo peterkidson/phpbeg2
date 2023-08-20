@@ -47,7 +47,7 @@
 					</form>
 
 
-					<form class="mt-3" method="post">
+					<form class="mt-3" method="post" action="/note">
 						<div class="shadow sm:overflow-hidden sm:rounded-md">
 							<input type="hidden" name="_pseudoMethod" value="DELETE">
 							<input type="hidden" name="idFromTheDeleteForm" value="<?= $note['id']; ?>">
