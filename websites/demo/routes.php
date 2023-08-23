@@ -18,5 +18,6 @@ $router->addGetRoute		('/notes/create',		'controllers/notes/create.php');
 $router->addPostRoute	('/notes/create',		'controllers/notes/create.php');
 
 $router->addGetRoute		('/register', 			'controllers/registration/create.php');
+$router->addPostRoute	('/register', 			'controllers/registration/store.php');
 
 

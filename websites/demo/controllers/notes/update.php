@@ -2,7 +2,7 @@
 
 use Core\App;
 use Core\KDatabase;
-use Core\Validator;
+use Core\KValidator;
 
 $db = App::container()->resolve(KDatabase::class);
 
@@ -15,7 +15,7 @@ kauthorise($note['userid'] === $userid);		// Can't even view
 
 $errors = [];
 
-if (! Validator::string($_POST['textarea_name'], 1, 100)) {
+if (! KValidator::string($_POST['textarea_name'], 1, 100)) {
 	$errors['textarea_name'] = 'Size must be >= 1 and <= 100 (and not be badnote)';
 }
 
