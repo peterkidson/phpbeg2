@@ -9,7 +9,7 @@ $db = App::container()->resolve(KDatabase::class);
 $userid = 1;
 
 $noteIdInPostRequest = $_POST['id'];
-$note = $db->kquery("select * from notes where id = :id", [':id' => $noteIdInPostRequest])->kfindOrFail();
+$note = $db->query("select * from notes where id = :id", [':id' => $noteIdInPostRequest])->findOrFail();
 
 kauthorise($note['userid'] === $userid);		// Can't even view
 
@@ -28,7 +28,7 @@ if (count($errors)) {
 	]);
 }
 
-$db->kquery('update notes set body = :body where id = :id', [
+$db->query('update notes set body = :body where id = :id', [
 	'id'		=> $_POST['id'],
 	'body'	=> $_POST['textarea_name'],
 ]);

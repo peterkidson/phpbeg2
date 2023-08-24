@@ -8,7 +8,7 @@ $db = App::container()->resolve(KDatabase::class);
 $userid = 1;
 
 $noteIdInGetRequest = $_GET['id'];
-$note = $db->kquery("select * from notes where id = :id", [':id' => $noteIdInGetRequest])->kfindOrFail();
+$note = $db->query("select * from notes where id = :id", [':id' => $noteIdInGetRequest])->findOrFail();
 
 kauthorise($note['userid'] === $userid);		// Can't even view
 

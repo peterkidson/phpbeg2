@@ -5,7 +5,7 @@ use Core\KDatabase;
 
 $db = App::container()->resolve(KDatabase::class);
 
-$notes = $db->kquery("select * from notes where userid = 1")->kfetchAll();
+$notes = $db->query("select * from notes where userid = 1")->fetchAll();
 
 view('notes/index.view.php', [
 	'heading' 	=> 'Notes',

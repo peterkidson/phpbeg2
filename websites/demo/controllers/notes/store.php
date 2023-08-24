@@ -20,7 +20,7 @@ if (! empty($errors)) {
 	]);
 }
 
-$db->kquery("insert into notes(body,userid) values(:newbody, :userid)", [
+$db->query("insert into notes(body,userid) values(:newbody, :userid)", [
 	"newbody" 	=> $_POST["textarea_name"],
 	"userid"		=> 1
 ]);

@@ -8,11 +8,11 @@ $db = App::container()->resolve(KDatabase::class);
 $userid = 1;
 
 $noteIdInPostRequest = $_POST['idFromTheDeleteForm'];
-$note = $db->kquery("select * from notes where id = :thisId", [':thisId' => $noteIdInPostRequest])->kfindOrFail();
+$note = $db->query("select * from notes where id = :thisId", [':thisId' => $noteIdInPostRequest])->findOrFail();
 
 kauthorise($note['userid'] === $userid);
 
-$db->kquery('delete from notes where id = :heyDeleteThisNoteId', [
+$db->query('delete from notes where id = :heyDeleteThisNoteId', [
 	'heyDeleteThisNoteId' => $noteIdInPostRequest
 ])	;
 

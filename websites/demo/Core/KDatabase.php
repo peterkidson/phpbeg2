@@ -18,7 +18,7 @@ class KDatabase
 		]);
 	}
 
-	public function kquery($query, $params = [])
+	public function query($query, $params = [])
 	{
 		try {
 			$this->statement = $this->connection->prepare($query);
@@ -29,21 +29,25 @@ class KDatabase
 		}
 	}
 
-	public function kfetch()
+	public function fetch()
 	{
 		return $this->statement->fetch();
 	}
-
-	public function kfindOrFail()
+	public function find()
 	{
-		$result = $this->kfetch();
+		return $this->fetch();
+	}
+
+	public function findOrFail()
+	{
+		$result = $this->fetch();
 		if (!$result) {
 			abort();
 		}
 		return $result;
 	}
 
-	public function kfetchAll()
+	public function fetchAll()
 	{
 		return $this->statement->fetchAll();
 	}
