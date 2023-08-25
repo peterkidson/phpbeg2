@@ -21,15 +21,29 @@ if (! empty($errors)) {
 }
 
 $db = App::container()->resolve(\Core\KDatabase::class);
-$user = $db->query('select * from users where email = :emailx', [
+$user = $db->query('SELECT * FROM users WHERE email = :emailx', [
 	'emailx' =>$email
 ])->find();
 
+if ($user) {
+	header('location: /');
+	exit();
+} else {
+	$db->query('INSERT INTO users (email,password) VALUES(:xemail, :xpassword)', [
+		'xemail' 	=> $email,
+		'xpassword'	=> $password
+	]);
+}
 
-dd($user);
+$_SESSION['logged_in']	= true;
+$_SESSION['user']			= ['email' => $email ];
 
-view('registration/create.view.php', [
-	'heading' 	=> 'Create User',
-	'errors'		=> []
-]);
+header('location: /');
+exit();
+
+//
+//view('registration/create.view.php', [
+//	'heading' 	=> 'Create User',
+//	'errors'		=> []
+//]);
 
