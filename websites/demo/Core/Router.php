@@ -2,6 +2,9 @@
 
 namespace Core;
 
+use Core\Middleware\Auth;
+use Core\Middleware\Guest;
+
 class Router
 {
 	public function __construct()
@@ -11,28 +14,48 @@ class Router
 	private $routes = [];
 
 	public function addGetRoute($uri, $controller) {
-		$this->addRoute($uri, $controller, 'GET');
+		return $this->addRoute($uri, $controller, 'GET');
 	}
 	public function addPostRoute($uri,$controller) {
-		$this->addRoute($uri, $controller, 'POST');
+		return $this->addRoute($uri, $controller, 'POST');
 	}
 	public function addDeleteRoute($uri,$controller) {
-		$this->addRoute($uri, $controller, 'DELETE');
+		return $this->addRoute($uri, $controller, 'DELETE');
 	}
 	public function addPatchRoute($uri,$controller) {
-		$this->addRoute($uri, $controller, 'PATCH');
+		return $this->addRoute($uri, $controller, 'PATCH');
 	}
 	public function addPutRoute($uri,$controller) {
-		$this->addRoute($uri, $controller, 'PUT');
+		return $this->addRoute($uri, $controller, 'PUT');
 	}
 	private function addRoute($uri, $controller, $method) {
-		$this->routes[] = ['uri' => $uri, 'controller' => $controller, 'method' => $method];
+		$this->routes[] = ['uri' => $uri, 'controller' => $controller, 'method' => $method, 'middleware' => null];
+		return $this;
 	}
 
-	public function routeTheRequest($puri, $pmethod) {
-		foreach ($this->routes as $route) {
+	public function only($userOrAuth)
+	{
+		$this->routes[array_key_last($this->routes)]['middleware'] = $userOrAuth;
+		return $this;
+	}
+
+	public function routeTheRequest($puri, $pmethod)
+	{
+		foreach ($this->routes as $route)
+		{
 			if (	$route['uri']		=== $puri
-				&&	$route['method']	=== strtoupper($pmethod) ) {
+				&&	$route['method']	=== strtoupper($pmethod) )
+			{
+				$middleware = Middleware::MAP[$route['middleware']];
+				(new $middleware)->handle();
+
+//				if ($route['middleware'] === 'guest') {		// a guest-only route
+//					(new Guest)->handle();
+//				}
+//				if ($route['middleware'] === 'auth') {			// an authorised-only route
+//					(new Auth)->handle();
+//				}
+
 				$controller = $route['controller'];
 				return require basepath($controller);
 			}
