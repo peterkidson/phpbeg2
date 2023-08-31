@@ -4,6 +4,7 @@ namespace Core;
 
 use Core\Middleware\Auth;
 use Core\Middleware\Guest;
+use Core\Middleware\Middleware;
 
 class Router
 {
@@ -28,6 +29,7 @@ class Router
 	public function addPutRoute($uri,$controller) {
 		return $this->addRoute($uri, $controller, 'PUT');
 	}
+
 	private function addRoute($uri, $controller, $method) {
 		$this->routes[] = ['uri' => $uri, 'controller' => $controller, 'method' => $method, 'middleware' => null];
 		return $this;
@@ -44,17 +46,9 @@ class Router
 		foreach ($this->routes as $route)
 		{
 			if (	$route['uri']		=== $puri
-				&&	$route['method']	=== strtoupper($pmethod) )
+				&& $route['method']	=== strtoupper($pmethod))
 			{
-				$middleware = Middleware::MAP[$route['middleware']];
-				(new $middleware)->handle();
-
-//				if ($route['middleware'] === 'guest') {		// a guest-only route
-//					(new Guest)->handle();
-//				}
-//				if ($route['middleware'] === 'auth') {			// an authorised-only route
-//					(new Auth)->handle();
-//				}
+				Middleware::resolve($route['middleware']);
 
 				$controller = $route['controller'];
 				return require basepath($controller);

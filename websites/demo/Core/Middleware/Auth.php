@@ -6,7 +6,7 @@ class Auth
 {
 	public function handle()
 	{
-		if (! $_SESSION['user'] ?? false) {			// without a logged-in user
+		if (! $_SESSION['user'] ?? false) {			// no logged-in user
 			header('location: /');
 			exit();
 		}
