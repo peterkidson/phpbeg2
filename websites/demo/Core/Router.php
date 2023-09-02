@@ -31,14 +31,17 @@ class Router
 	}
 
 	private function addRoute($uri, $controller, $method) {
-		$this->routes[] = ['uri' => $uri, 'controller' => $controller, 'method' => $method, 'middleware' => null];
-		return $this;
+		$this->routes[] = [	'uri'				=> $uri,
+									'controller'	=> $controller,
+									'method'			=> $method,
+									'middleware' 	=> null];
+		return $this;	// needed for chaining to ->only()
 	}
 
 	public function only($userOrAuth)
 	{
 		$this->routes[array_key_last($this->routes)]['middleware'] = $userOrAuth;
-		return $this;
+		return $this; // not needed; potential for more chaining
 	}
 
 	public function routeTheRequest($puri, $pmethod)

@@ -15,13 +15,13 @@ class Middleware
 			return;
 		}
 
-		$middleware = static::MAP[$key] ?? false;
+		$middlewareClass = static::MAP[$key] ?? false;
 
-		if (!$middleware) {
+		if (!$middlewareClass) {
 			throw new \Exception("No middleware for key '{$key}'");
 		}
 
-		(new $middleware)->handle();
+		(new $middlewareClass)->handle();
 	}
 
 }
