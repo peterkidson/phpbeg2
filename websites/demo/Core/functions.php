@@ -15,7 +15,7 @@ function dd($var)
 	die();
 }
 
-function requestUri($value)
+function uriIs($value)
 {
 	return $_SERVER['REQUEST_URI'] === $value;
 }
