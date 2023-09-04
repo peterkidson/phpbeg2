@@ -29,10 +29,11 @@ if ($user) {
 	header('location: /');
 	exit();
 } else {
-	$db->query('INSERT INTO users (email,password,name) VALUES(:xemail, :xpassword, :xname)', [
+	$db->query('INSERT INTO users (email,password,name,login) VALUES(:xemail, :xpassword, :xname, :xlogin)', [
 		'xemail' 	=> $email,
-		'xpassword'	=> $password,
-		'xname'		=> $email,		//
+		'xpassword'	=> password_hash($password,PASSWORD_BCRYPT),		// == DEFAULT
+		'xname'		=> $email,
+		'xlogin'		=> $email
 	]);
 }
 
