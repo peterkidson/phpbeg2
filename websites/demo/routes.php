@@ -20,4 +20,7 @@ $router->addPostRoute	('/notes/create',		'controllers/notes/create.php');
 $router->addGetRoute		('/register', 			'controllers/registration/create.php')->only('guest');
 $router->addPostRoute	('/register', 			'controllers/registration/store.php');
 
+$router->addGetRoute		('/login', 				'controllers/sessions/create.php')->only('guest');
+
+
 
