@@ -21,6 +21,7 @@ $router->addGetRoute		('/register', 			'controllers/registration/create.php')->o
 $router->addPostRoute	('/register', 			'controllers/registration/store.php');
 
 $router->addGetRoute		('/login', 				'controllers/sessions/create.php')->only('guest');
+$router->addPostRoute	('/sessions', 			'controllers/sessions/store.php')->only('guest');
 
 
 

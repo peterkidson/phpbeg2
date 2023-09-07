@@ -1,13 +1,13 @@
 <?php
 
 use Core\App;
+use Core\KDatabase;
 use Core\KValidator;
 
 $email		= $_POST['email'];
 $password	= $_POST['password'];
 
 $errors = [];
-
 if (! KValidator::email($email)) {
 	$errors['email'] = 'Email error';
 }
@@ -20,7 +20,7 @@ if (! empty($errors)) {
 	]);
 }
 
-$db = App::container()->resolve(\Core\KDatabase::class);
+$db = App::container()->resolve(KDatabase::class);
 $user = $db->query('SELECT * FROM users WHERE email = :emailx', [
 	'emailx' =>$email
 ])->find();
@@ -37,8 +37,7 @@ if ($user) {
 	]);
 }
 
-$_SESSION['logged_in']	= true;
-$_SESSION['user']			= ['email' => $email ];
+login($user);
 
 header('location: /');
 exit();

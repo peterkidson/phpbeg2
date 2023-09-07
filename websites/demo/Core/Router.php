@@ -38,9 +38,9 @@ class Router
 		return $this;	// needed for chaining to ->only()
 	}
 
-	public function only($userOrAuth)
+	public function only($mware)
 	{
-		$this->routes[array_key_last($this->routes)]['middleware'] = $userOrAuth;
+		$this->routes[array_key_last($this->routes)]['middleware'] = $mware;
 		return $this; // not needed; potential for more chaining
 	}
 

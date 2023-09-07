@@ -45,3 +45,10 @@ function view($path, $urlParams = [])
 	require basepath('views/' . $path);
 }
 
+function login($user)
+{
+	$_SESSION['logged_in']	= true;
+//	$_SESSION['user']			= ['email' => $email ];
+	$_SESSION['user']			= ['email' => $user['email' ]];
+
+}
