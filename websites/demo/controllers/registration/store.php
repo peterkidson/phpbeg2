@@ -26,7 +26,7 @@ $user = $db->query('SELECT * FROM users WHERE email = :emailx', [
 ])->find();
 
 $hash = password_hash($password,PASSWORD_BCRYPT);
-klog("new  hash '{$hash}'");
+//klog("new  hash '{$hash}'");
 if ($user) {
 	header('location: /');
 	exit();

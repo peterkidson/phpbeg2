@@ -24,21 +24,15 @@ if (! empty($errors)) {
 }
 
 $user = $db->query('select * from users where email = :xemail', ['xemail' => $email])->find();
-if (!$user) {
-	return view('sessions/create.view.php', [
-		'errors'	=> [ 'email' => 'No such user found']
-	]);
+if ($user) {
+	if (password_verify($password,$user['password'])) {
+		login(['email' => $email]);
+		header('location: /');
+		exit();
+	}
 }
 
-klog("read hash '{$user['password']}'");
-
-if (password_verify($password,$user['password'])) {
-	login(['email' => $email]);
-	header('location: /');
-	exit();
-}
-
-return view('sessions/create.view.php', [
+return view('session/create.view.php', [
 	'errors'	=> [ 'password' => 'Invalid password']
 ]);
 
