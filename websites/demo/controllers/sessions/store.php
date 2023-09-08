@@ -26,10 +26,20 @@ if (! empty($errors)) {
 $user = $db->query('select * from users where email = :xemail', ['xemail' => $email])->find();
 if (!$user) {
 	return view('sessions/create.view.php', [
-		'errors'	=> [ 'email' => 'No such account found']
+		'errors'	=> [ 'email' => 'No such user found']
 	]);
 }
 
+$enteredPassword = password_hash($password,PASSWORD_BCRYPT);
+if ($enteredPassword === $user['password']) {
+//if (password_verify($password,$user['password'])) {
+	login(['email' => $email]);
+	header('location: /');
+	exit();
+}
+
+return view('sessions/create.view.php', [
+	'errors'	=> [ 'password' => 'Invalid password']
+]);
 
 
-login(['email' => $email]);
