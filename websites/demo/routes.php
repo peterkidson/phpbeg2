@@ -18,10 +18,11 @@ $router->addGetRoute		('/notes/create',		'controllers/notes/create.php');
 $router->addPostRoute	('/notes/create',		'controllers/notes/create.php');
 
 $router->addGetRoute		('/register', 			'controllers/registration/create.php')->only('guest');
-$router->addPostRoute	('/register', 			'controllers/registration/store.php');
+$router->addPostRoute	('/register', 			'controllers/registration/store.php')->only('guest');
 
-$router->addGetRoute		('/login', 				'controllers/sessions/create.php')->only('guest');
+$router->addGetRoute		('/login', 				'controllers/session/create.php')->only('guest');
 $router->addPostRoute	('/session', 				'controllers/session/store.php')->only('guest');
+$router->addDeleteRoute	('/session', 				'controllers/session/destroy.php')->only('auth');
 
 
 

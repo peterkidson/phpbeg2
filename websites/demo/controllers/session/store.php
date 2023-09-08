@@ -18,7 +18,7 @@ if (! KValidator::string($password)) {
 	$errors['password'] = 'Invalid password';
 }
 if (! empty($errors)) {
-	return view('sessions/create.view.php', [
+	return view('session/create.view.php', [
 		'errors' => $errors
 	]);
 }

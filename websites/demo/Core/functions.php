@@ -2,7 +2,6 @@
 
 use Core\KResponse;    /// needed for show()
 
-
 const LOG = BASE_PATH . '/logs/klog.log';
 
 function klog($data) {
@@ -63,4 +62,16 @@ function login($user)
 		'email' => $user['email' ]
 	];
 
+	session_regenerate_id(true);
 }
+
+function logout()
+{
+	$_SESSION = [];
+	session_destroy();
+
+	$sp = session_get_cookie_params();
+
+	setcookie('PHPSESSID','', time()-60, $sp['path'], $sp['domain']);
+}
+
