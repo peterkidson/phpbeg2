@@ -15,7 +15,7 @@ if (! KValidator::email($email)) {
 	$errors['email'] = 'Email error';
 }
 if (! KValidator::string($password)) {
-	$errors['password'] = 'Password error 2';
+	$errors['password'] = 'Invalid password';
 }
 if (! empty($errors)) {
 	return view('sessions/create.view.php', [
@@ -24,6 +24,12 @@ if (! empty($errors)) {
 }
 
 $user = $db->query('select * from users where email = :xemail', ['xemail' => $email])->find();
-if (!)
+if (!$user) {
+	return view('sessions/create.view.php', [
+		'errors'	=> [ 'email' => 'No such account found']
+	]);
+}
+
+
 
 login(['email' => $email]);
