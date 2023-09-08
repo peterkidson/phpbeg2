@@ -1,10 +1,10 @@
 <?php
 
-Use Core\App;
-Use Core\Container;
+Use Core\KApp;
+Use Core\KContainer;
 Use Core\KDatabase;
 
-$container = new Container();
+$container = new KContainer();
 
 $container->bind(KDatabase::class, function () {
 	$config = require basepath('config.php');
@@ -12,4 +12,4 @@ $container->bind(KDatabase::class, function () {
 	return $db;
 });
 
-App::setContainer($container);
+KApp::setContainer($container);

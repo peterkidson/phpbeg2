@@ -1,11 +1,11 @@
 <?php
 
 
-use Core\App;
+use Core\KApp;
 use Core\KDatabase;
 use Core\KValidator;
 
-$db = App::container()->resolve(KDatabase::class);
+$db = KApp::container()->resolve(KDatabase::class);
 
 $email		= $_POST['email'];
 $password	= $_POST['password'];

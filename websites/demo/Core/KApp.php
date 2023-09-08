@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class App
+class KApp
 {
 	protected static $m_container;
 

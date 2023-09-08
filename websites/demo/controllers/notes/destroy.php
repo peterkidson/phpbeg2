@@ -1,9 +1,9 @@
 <?php
 
-use Core\App;
+use Core\KApp;
 use Core\KDatabase;
 
-$db = App::container()->resolve(KDatabase::class);
+$db = KApp::container()->resolve(KDatabase::class);
 
 $userid = 1;
 

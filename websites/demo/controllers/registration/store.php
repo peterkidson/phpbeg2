@@ -1,6 +1,6 @@
 <?php
 
-use Core\App;
+use Core\KApp;
 use Core\KDatabase;
 use Core\KValidator;
 
@@ -20,7 +20,7 @@ if (! empty($errors)) {
 	]);
 }
 
-$db = App::container()->resolve(KDatabase::class);
+$db = KApp::container()->resolve(KDatabase::class);
 $user = $db->query('SELECT * FROM users WHERE email = :emailx', [
 	'emailx' =>$email
 ])->find();

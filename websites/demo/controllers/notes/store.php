@@ -1,10 +1,10 @@
 <?php
 
-use Core\App;
+use Core\KApp;
 use Core\KValidator;
 use Core\KDatabase;
 
-$db = App::container()->resolve(KDatabase::class);
+$db = KApp::container()->resolve(KDatabase::class);
 
 $errors =[];
 

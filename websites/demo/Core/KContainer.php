@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Container
+class KContainer
 {
 	protected $m_bindings = [];
 
