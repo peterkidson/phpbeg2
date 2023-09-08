@@ -2,6 +2,13 @@
 
 session_start();
 
+$plain = "hello";
+$hash = password_hash($plain,PASSWORD_BCRYPT);
+if (!password_verify($plain,$hash)) {
+	throw Exception("bad hash");
+	exit;
+}
+
 const BASE_PATH = __DIR__ . '/../';
 
 require BASE_PATH . "Core/functions.php";

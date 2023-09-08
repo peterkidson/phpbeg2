@@ -2,6 +2,17 @@
 
 use Core\KResponse;    /// needed for show()
 
+
+const LOG = BASE_PATH . '/logs/klog.log';
+
+function klog($data) {
+	$output = $data;
+	if (is_array($output))
+		$output = implode(',', $output);
+
+	error_log($output."\n", 3, LOG);
+}
+
 function d($var)
 {
 	echo "<pre>";
@@ -48,7 +59,8 @@ function view($path, $urlParams = [])
 function login($user)
 {
 	$_SESSION['logged_in']	= true;
-//	$_SESSION['user']			= ['email' => $email ];
-	$_SESSION['user']			= ['email' => $user['email' ]];
+	$_SESSION['user']			= [
+		'email' => $user['email' ]
+	];
 
 }

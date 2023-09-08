@@ -30,9 +30,9 @@ if (!$user) {
 	]);
 }
 
-$enteredPassword = password_hash($password,PASSWORD_BCRYPT);
-if ($enteredPassword === $user['password']) {
-//if (password_verify($password,$user['password'])) {
+klog("read hash '{$user['password']}'");
+
+if (password_verify($password,$user['password'])) {
 	login(['email' => $email]);
 	header('location: /');
 	exit();

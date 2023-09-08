@@ -25,13 +25,15 @@ $user = $db->query('SELECT * FROM users WHERE email = :emailx', [
 	'emailx' =>$email
 ])->find();
 
+$hash = password_hash($password,PASSWORD_BCRYPT);
+klog("new  hash '{$hash}'");
 if ($user) {
 	header('location: /');
 	exit();
 } else {
 	$db->query('INSERT INTO users (email,password,name,login) VALUES(:xemail, :xpassword, :xname, :xlogin)', [
 		'xemail' 	=> $email,
-		'xpassword'	=> password_hash($password,PASSWORD_BCRYPT),		// == DEFAULT
+		'xpassword'	=> $hash,
 		'xname'		=> $email,
 		'xlogin'		=> $email
 	]);
