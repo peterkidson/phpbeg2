@@ -26,7 +26,7 @@ if (! empty($errors)) {
 $user = $db->query('select * from users where email = :xemail', ['xemail' => $email])->find();
 if ($user) {
 	if (password_verify($password,$user['password'])) {
-		login(['email' => $email]);
+		login($user);
 		header('location: /');
 		exit();
 	}

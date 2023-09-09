@@ -22,7 +22,7 @@ if (! empty($errors)) {
 
 $db->query("insert into notes(body,userid) values(:newbody, :userid)", [
 	"newbody" 	=> $_POST["textarea_name"],
-	"userid"		=> 1
+	"userid"		=> $_SESSION['user']['user']['id']
 ]);
 
 header('location: /notes');

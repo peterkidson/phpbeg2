@@ -6,12 +6,10 @@ use Core\KValidator;
 
 $db = KApp::container()->resolve(KDatabase::class);
 
-$userid = 1;
-
 $noteIdInPostRequest = $_POST['id'];
 $note = $db->query("select * from notes where id = :id", [':id' => $noteIdInPostRequest])->findOrFail();
 
-kauthorise($note['userid'] === $userid);		// Can't even view
+kauthorise($note['userid'] === $_SESSION['user']['user']['id']);		// Can't even view
 
 $errors = [];
 

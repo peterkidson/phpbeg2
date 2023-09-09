@@ -5,12 +5,10 @@ use Core\KDatabase;
 
 $db = KApp::container()->resolve(KDatabase::class);
 
-$userid = 1;
-
 $noteIdInGetRequest = $_GET['id'];
 $note = $db->query("select * from notes where id = :id", [':id' => $noteIdInGetRequest])->findOrFail();
 
-kauthorise($note['userid'] === $userid);		// Can't even view
+kauthorise($note['userid'] === $_SESSION['user']['user']['id']);		// Can't even view
 
 view('notes/show.view.php', [
 	'heading' => 'Note',

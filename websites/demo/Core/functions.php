@@ -59,9 +59,7 @@ function view($path, $urlParams = [])
 function login($user)
 {
 	$_SESSION['logged_in']	= true;
-	$_SESSION['user']			= [
-		'email' => $user['email' ]
-	];
+	$_SESSION['user']			= ['user' => $user];
 
 	session_regenerate_id(true);
 }

@@ -5,12 +5,10 @@ use Core\KDatabase;
 
 $db = KApp::container()->resolve(KDatabase::class);
 
-$userid = 1;
-
 $noteIdInGetRequest = $_GET['id'];
 $note = $db->query("select * from notes where id = :thisId", [':thisId' => $noteIdInGetRequest])->findOrFail();
 
-kauthorise($note['userid'] === $userid);
+kauthorise($note['userid'] === $_SESSION['user']['user']['id']);
 
 $db->query('delete from notes where id = :heyDeleteThisNoteId', [
 	'heyDeleteThisNoteId' => $noteIdInGetRequest

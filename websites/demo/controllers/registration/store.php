@@ -21,32 +21,25 @@ if (! empty($errors)) {
 }
 
 $db = KApp::container()->resolve(KDatabase::class);
-$user = $db->query('SELECT * FROM users WHERE email = :emailx', [
-	'emailx' =>$email
-])->find();
+$user = $db->query('SELECT * FROM users WHERE email = :emailx', ['emailx' =>$email])->find();
 
-$hash = password_hash($password,PASSWORD_BCRYPT);
-//klog("new  hash '{$hash}'");
 if ($user) {
 	header('location: /');
 	exit();
-} else {
-	$db->query('INSERT INTO users (email,password,name,login) VALUES(:xemail, :xpassword, :xname, :xlogin)', [
-		'xemail' 	=> $email,
-		'xpassword'	=> $hash,
-		'xname'		=> $email,
-		'xlogin'		=> $email
-	]);
 }
 
-login($user);
+$db->query('INSERT INTO users (email,password,name,login) VALUES(:xemail, :xpassword, :xname, :xlogin)', [
+	'xemail' 	=> $email,
+	'xpassword'	=> password_hash($password,PASSWORD_BCRYPT),
+	'xname'		=> $email,
+	'xlogin'		=> $email
+]);
+
+$user = $db->query('SELECT * FROM users WHERE email = :emailx', ['emailx' =>$email])->find();
+if ($user) {
+	login($user);
+}
 
 header('location: /');
 exit();
-
-//
-//view('registration/create.view.php', [
-//	'heading' 	=> 'Create User',
-//	'errors'		=> []
-//]);
 
