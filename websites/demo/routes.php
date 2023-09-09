@@ -21,8 +21,8 @@ $router->addGetRoute		('/register', 			'controllers/registration/create.php')->o
 $router->addPostRoute	('/register', 			'controllers/registration/store.php')->only('guest');
 
 $router->addGetRoute		('/login', 				'controllers/session/create.php')->only('guest');
-$router->addPostRoute	('/session', 				'controllers/session/store.php')->only('guest');
-$router->addDeleteRoute	('/session', 				'controllers/session/destroy.php')->only('auth');
+$router->addPostRoute	('/session',	 			'controllers/session/store.php')->only('guest');
+$router->addDeleteRoute	('/session',	 			'controllers/session/destroy.php')->only('auth');
 
 
 

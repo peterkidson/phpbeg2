@@ -55,8 +55,8 @@
 						</div>
 
 						<div class="relative ml-3">
-							<form method="POST" action="/sessions">
-								<input type="hidden" name="_method" value="DELETE"/>
+							<form method="POST" action="/session">
+								<input type="hidden" name="_pseudomethod" value="DELETE"/>
 
 								<button class="text-white">Log Out</button>
 							</form>
