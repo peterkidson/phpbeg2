@@ -15,9 +15,11 @@
 						<a href="/about"
 							class="<?= uriIs('/about') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
 								hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
-						<a href="/notes"
-							class="<?= uriIs('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
-								hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
+						<?php if ($_SESSION['user'] ?? false) : ?>
+							<a href="/notes"
+								class="<?= uriIs('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
+									hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
+							<?php endif ?>
 						<a href="/contact"
 							class="<?= uriIs('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>
 								hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
