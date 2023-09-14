@@ -4,20 +4,17 @@
 use Core\KApp;
 use Core\KDatabase;
 use Core\KValidator;
+use Http\Forms\LoginForm;
 
 $db = KApp::container()->resolve(KDatabase::class);
 
 $email		= $_POST['email'];
 $password	= $_POST['password'];
 
-$errors = [];
-if (! KValidator::email($email)) {
-	$errors['email'] = 'Email error';
-}
-if (! KValidator::string($password)) {
-	$errors['password'] = 'Invalid password';
-}
-if (! empty($errors)) {
+$form = new LoginForm();
+
+if (! $form->validate($email,$password)) {
+
 	return view('session/create.view.php', [
 		'errors' => $errors
 	]);
