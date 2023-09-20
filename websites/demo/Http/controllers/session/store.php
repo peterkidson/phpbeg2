@@ -3,7 +3,6 @@
 
 use Core\KApp;
 use Core\KDatabase;
-use Core\KValidator;
 use Http\Forms\LoginForm;
 
 $db = KApp::container()->resolve(KDatabase::class);
@@ -14,9 +13,8 @@ $password	= $_POST['password'];
 $form = new LoginForm();
 
 if (! $form->validate($email,$password)) {
-
 	return view('session/create.view.php', [
-		'errors' => $errors
+		'errors' => $form->errors()
 	]);
 }
 
