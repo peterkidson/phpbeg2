@@ -9,7 +9,7 @@ $email		= $_POST['email'];
 $password	= $_POST['password'];
 
 $form = new LoginForm();
-$form->validate($email,$password);
+$form->validateFormats($email,$password);
 
 //$errors = [];
 //if (! KValidator::email($email)) {

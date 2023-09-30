@@ -1,34 +1,26 @@
 <?php
 
-
-use Core\KApp;
-use Core\KDatabase;
+use Core\AuthenticateUser;
 use Http\Forms\LoginForm;
-
-$db = KApp::container()->resolve(KDatabase::class);
 
 $email		= $_POST['email'];
 $password	= $_POST['password'];
 
 $form = new LoginForm();
 
-if (! $form->validate($email,$password)) {
-	return view('session/create.view.php', [
-		'errors' => $form->errors()
-	]);
+if ($form->validateFormats($email,$password)) {
+	$auth = new AuthenticateUser();
+
+	if ($auth->attempt($email,$password)) {
+		redirectAndDie('/');
+	}
+	$form->error('email','Bad credentials');
 }
 
-$user = $db->query('select * from users where email = :xemail', ['xemail' => $email])->find();
-if ($user) {
-	if (password_verify($password,$user['password'])) {
-		login($user);
-		header('location: /');
-		exit();
-	}
-}
 
 return view('session/create.view.php', [
-	'errors'	=> [ 'password' => 'Bad credentials']
+	'errors' => $form->errors()
 ]);
+
 
 

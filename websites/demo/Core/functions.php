@@ -56,21 +56,9 @@ function view($path, $urlParams = [])
 	require basepath('views/' . $path);
 }
 
-function login($user)
+function redirectAndDie($path)
 {
-	$_SESSION['logged_in']	= true;
-	$_SESSION['user']			= ['user' => $user];
+	header("location: {$path}");
+	exit();
 
-	session_regenerate_id(true);
-}
-
-function logout()
-{
-	$_SESSION= [];
-
-	session_destroy();
-
-	$params = session_get_cookie_params();
-
-	setcookie('PHPSESSID', '', time()-60, $params['path'], $params['domain']);
 }

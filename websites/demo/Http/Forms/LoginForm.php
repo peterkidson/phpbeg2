@@ -8,7 +8,7 @@ class LoginForm
 {
 	private $errors = [];
 
-	public function validate($email,$password)
+	public function validateFormats($email, $password)
 	{
 		if (! KValidator::email($email)) {
 			$this->errors['email'] = 'Invalid email';
@@ -23,6 +23,11 @@ class LoginForm
 	public function errors()
 	{
 		return $this->errors;
+	}
+
+	public function error($name,$message)
+	{
+		$this->errors[$name] = $message;
 	}
 
 }
