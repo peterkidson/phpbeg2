@@ -28,8 +28,7 @@ $db = KApp::container()->resolve(KDatabase::class);
 $user = $db->query('SELECT * FROM users WHERE email = :emailx', ['emailx' =>$email])->find();
 
 if ($user) {
-	header('location: /');
-	exit();
+	redirectAndDie('/');
 }
 
 $db->query('INSERT INTO users (email,password,name,login) VALUES(:xemail, :xpassword, :xname, :xlogin)', [
@@ -44,6 +43,5 @@ if ($user) {
 	login($user);
 }
 
-header('location: /');
-exit();
+redirectAndDie('/');
 
