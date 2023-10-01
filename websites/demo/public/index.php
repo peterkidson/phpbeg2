@@ -1,5 +1,8 @@
 <?php
 
+use Core\Router;
+use Core\Session;
+
 session_start();
 
 $plain = "hello";
@@ -18,7 +21,7 @@ spl_autoload_register(function ($class) {
 	require basepath("{$rclass}.php");
 });
 
-$router = new \Core\Router();
+$router = new Router();
 require basepath('routes.php');
 
 require basepath('bootstrap.php');
@@ -29,4 +32,6 @@ $puri = parse_url($prequest)['path'];
 $pmethod = $_POST['_pseudoMethod'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->routeTheRequest($puri, $pmethod);
+
+Session::unflash();
 

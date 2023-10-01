@@ -17,10 +17,10 @@ if ($form->validateFormats($email,$password)) {
 	$form->error('email','Bad credentials');
 }
 
+Session::flash('errors', $form->errors());
 
-return view('session/create.view.php', [
-	'errors' => $form->errors()
-]);
+return redirect('/login');
+
 
 
 
