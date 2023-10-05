@@ -30,3 +30,10 @@ $pmethod = $_POST['_pseudoMethod'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->routeTheRequest($puri, $pmethod);
 
+unset($_SESSION['_flash']);
+
+//return view('session/create.view.php', [
+//	'errors' => $form->errors()
+//]);
+
+

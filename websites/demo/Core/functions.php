@@ -60,5 +60,4 @@ function redirectAndDie($path)
 {
 	header("location: {$path}");
 	exit();
-
 }
