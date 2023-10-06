@@ -35,8 +35,5 @@ $router->routeTheRequest($puri, $pmethod);
 //unset($_SESSION['_flash']);
 Session::unflash();
 
-//return view('session/create.view.php', [
-//	'errors' => $form->errors()
-//]);
 
 
