@@ -1,6 +1,6 @@
 <?php
 
-use Core\Authenticator;
+use Core\KAuthenticator;
 use Core\Session;
 use Http\Forms\LoginForm;
 
@@ -10,7 +10,7 @@ $password	= $_POST['password'];
 $form = new LoginForm();
 
 if ($form->validateFormats($email,$password)) {
-	$auth = new Authenticator();
+	$auth = new KAuthenticator();
 
 	if ($auth->attempt($email,$password)) {
 		redirectAndDie('/');

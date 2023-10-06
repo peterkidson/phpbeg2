@@ -34,4 +34,14 @@ class Session
 	{
 		$_SESSION = [];
 	}
+	public static function destroy()
+	{
+		self::flush();
+
+		session_destroy();
+
+		$params = session_get_cookie_params();
+
+		setcookie('PHPSESSID', '', time()-60, $params['path'], $params['domain']);
+	}
 }

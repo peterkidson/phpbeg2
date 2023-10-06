@@ -1,8 +1,8 @@
 <?php
 
-use Core\Authenticator;
+use Core\KAuthenticator;
 
-$auth = new Authenticator();
+$auth = new KAuthenticator();
 $auth->logout();
 
 redirectAndDie('/');
