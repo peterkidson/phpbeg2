@@ -1,8 +1,8 @@
 <?php
 
-use Core\AuthenticateUser;
+use Core\Authenticator;
 
-$auth = new AuthenticateUser();
+$auth = new Authenticator();
 $auth->logout();
 
 redirectAndDie('/');

@@ -1,6 +1,7 @@
 <?php
 
-use Core\AuthenticateUser;
+use Core\Authenticator;
+use Core\Session;
 use Http\Forms\LoginForm;
 
 $email		= $_POST['email'];
@@ -9,7 +10,7 @@ $password	= $_POST['password'];
 $form = new LoginForm();
 
 if ($form->validateFormats($email,$password)) {
-	$auth = new AuthenticateUser();
+	$auth = new Authenticator();
 
 	if ($auth->attempt($email,$password)) {
 		redirectAndDie('/');
@@ -17,7 +18,8 @@ if ($form->validateFormats($email,$password)) {
 	$form->error('email','Bad credentials');
 }
 
-$_SESSION['_flash']['errors'] = $form->errors();
+//$_SESSION['_flash']['errors'] = $form->errors();
+Session::flash('errors', $form->errors());
 
 return redirectAndDie('/login');
 

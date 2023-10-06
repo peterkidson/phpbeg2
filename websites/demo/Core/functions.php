@@ -10,7 +10,7 @@ function klog($data) {
 	if (is_array($output))
 		$output = implode(',', $output);
 
-	error_log($output."\n", 3, LOG);
+	error_log(date(DATE_RFC822) . " : " . $output."\n", 3, LOG);
 }
 
 function d($var)

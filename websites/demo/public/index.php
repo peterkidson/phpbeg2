@@ -1,5 +1,7 @@
 <?php
 
+use Core\Session;
+
 session_start();
 
 $plain = "hello";
@@ -30,7 +32,8 @@ $pmethod = $_POST['_pseudoMethod'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->routeTheRequest($puri, $pmethod);
 
-unset($_SESSION['_flash']);
+//unset($_SESSION['_flash']);
+Session::unflash();
 
 //return view('session/create.view.php', [
 //	'errors' => $form->errors()
