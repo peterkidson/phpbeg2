@@ -18,14 +18,9 @@ if ($form->validateFormats($email,$password)) {
 	$form->error('email','Bad credentials');
 }
 
-//$_SESSION['_flash']['errors'] = $form->errors();
-Session::flash('errors', $form->errors());
+Session::setFlash('errors', $form->errors());
+Session::setFlash('old', ['email' => $email]);
 
 return redirectAndDie('/login');
-
-//return view('session/create.view.php', [
-//	'errors' => $form->errors()
-//]);
-
 
 

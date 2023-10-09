@@ -22,7 +22,7 @@ class Session
 	{
 		return (bool) self::get($key);
 	}
-	public static function flash($key,$value)
+	public static function setFlash($key, $value)
 	{
 		$_SESSION[FLASH][$key] = $value;
 	}
