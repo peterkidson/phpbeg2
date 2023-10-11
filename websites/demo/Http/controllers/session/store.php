@@ -7,16 +7,12 @@ use Http\Forms\LoginForm;
 $email		= $_POST['email'];
 $password	= $_POST['password'];
 
-$form = new LoginForm();
+LoginForm::validateFormats($email,$password)
 
-if ($form->validateFormats($email,$password)) {
-	$auth = new KAuthenticator();
-
-	if ($auth->attempt($email,$password)) {
-		redirectAndDie('/');
-	}
-	$form->error('email','Bad credentials');
+if ((new KAuthenticator())->attempt($email,$password)) {
+	redirectAndDie('/');
 }
+$form->error('email','Bad credentials');
 
 Session::setFlash('errors', $form->errors());
 Session::setFlash('old', ['email' => $email]);
