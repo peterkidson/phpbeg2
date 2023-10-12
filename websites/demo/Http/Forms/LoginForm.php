@@ -22,7 +22,7 @@ class LoginForm
 
 	}
 
-	public static function validateFormats($attributes)
+	public static function validate($attributes)
 	{
 		$instance = new static($attributes);
 		if ($instance->failed()) {

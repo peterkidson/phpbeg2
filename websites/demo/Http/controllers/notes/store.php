@@ -25,6 +25,6 @@ $db->query("insert into notes(body,userid) values(:newbody, :userid)", [
 	"userid"		=> $_SESSION['user']['user']['id']
 ]);
 
-redirectAndDie('/notes');
+redirect('/notes');
 
 

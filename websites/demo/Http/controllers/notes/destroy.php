@@ -14,4 +14,4 @@ $db->query('delete from notes where id = :heyDeleteThisNoteId', [
 	'heyDeleteThisNoteId' => $noteIdInPostRequest
 ])	;
 
-redirectAndDie('/notes');
+redirect('/notes');

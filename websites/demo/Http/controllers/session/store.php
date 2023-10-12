@@ -5,19 +5,21 @@ use Core\Session;
 use Http\Forms\LoginForm;
 
 
-LoginForm::validateFormats($attributes = [
+$form = LoginForm::validate($attributes = [
 	'email'		=> $_POST['email'],
 	'password'	=> $_POST['password']
 	]);
 
-if ((new KAuthenticator())->attempt($atttributesemail,$password)) {
-	redirectAndDie('/');
+if ((new KAuthenticator())->attempt($attributes['email'],$attributes['password'])) {
+	redirect('/');
 }
+
 $form->error('email','Bad credentials');
 
-Session::setFlash('errors', $form->errors());
-Session::setFlash('old', ['email' => $email]);
+Session::flash('errors', $form->errors());
 
-return redirectAndDie('/login');
+Session::flash('old', ['email' => $_POST['email']]);
+
+return redirect('/login');
 
 

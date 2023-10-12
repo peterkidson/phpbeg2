@@ -9,7 +9,7 @@ $email		= $_POST['email'];
 $password	= $_POST['password'];
 
 $form = new LoginForm();
-$form->validateFormats($email,$password);
+$form->validate($email,$password);
 
 //$errors = [];
 //if (! KValidator::email($email)) {
@@ -28,7 +28,7 @@ $db = KApp::container()->resolve(KDatabase::class);
 $user = $db->query('SELECT * FROM users WHERE email = :emailx', ['emailx' =>$email])->find();
 
 if ($user) {
-	redirectAndDie('/');
+	redirect('/');
 }
 
 $db->query('INSERT INTO users (email,password,name,login) VALUES(:xemail, :xpassword, :xname, :xlogin)', [
@@ -43,5 +43,5 @@ if ($user) {
 	login($user);
 }
 
-redirectAndDie('/');
+redirect('/');
 

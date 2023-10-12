@@ -47,7 +47,7 @@ function view($path, $urlParams = [])
 	extract($urlParams);
 	require basepath('views/' . $path);
 }
-function redirectAndDie($path)
+function redirect($path)
 {
 	header("location: {$path}");
 	exit();
