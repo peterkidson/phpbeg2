@@ -3,6 +3,7 @@
 namespace Http\Forms;
 
 use Core\KValidator;
+use Core\ValidationException;
 
 class LoginForm
 {
@@ -10,7 +11,7 @@ class LoginForm
 
 	public function __construct($attributes)
 	{
-		if (! KValidator::email($attributes['email')) {
+		if (! KValidator::email($attributes['email'])) {
 			$this->errors['email'] = 'Invalid email';
 		}
 		if (! KValidator::string($attributes['password'],3) ) {
@@ -23,6 +24,16 @@ class LoginForm
 
 	public static function validateFormats($attributes)
 	{
+		$instance = new static($attributes);
+		if ($instance->failed()) {
+			throw new ValidationException();
+		}
+		return $instance;
+	}
+
+	public function failed()
+	{
+		return count($this->errors);
 	}
 
 	public function errors()

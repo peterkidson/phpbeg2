@@ -4,12 +4,13 @@ use Core\KAuthenticator;
 use Core\Session;
 use Http\Forms\LoginForm;
 
-$email		= $_POST['email'];
-$password	= $_POST['password'];
 
-LoginForm::validateFormats($email,$password)
+LoginForm::validateFormats($attributes = [
+	'email'		=> $_POST['email'],
+	'password'	=> $_POST['password']
+	]);
 
-if ((new KAuthenticator())->attempt($email,$password)) {
+if ((new KAuthenticator())->attempt($atttributesemail,$password)) {
 	redirectAndDie('/');
 }
 $form->error('email','Bad credentials');
