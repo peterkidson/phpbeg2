@@ -9,7 +9,7 @@ class LoginForm
 {
 	private $errors = [];
 
-	public function __construct($attributes)
+	public function __construct(public array $attributes)
 	{
 		if (! KValidator::email($attributes['email'])) {
 			$this->errors['email'] = 'Invalid email';
@@ -24,11 +24,12 @@ class LoginForm
 
 	public static function validate($attributes)
 	{
-		$instance = new static($attributes);
-		if ($instance->failed()) {
-			throw new ValidationException();
+		$staticLoginForm = new static($attributes);
+		if ($staticLoginForm->failed()) {
+
+			ValidationException::throw($staticLoginForm->errors(),$staticLoginForm->attributes);
 		}
-		return $instance;
+		return $staticLoginForm;
 	}
 
 	public function failed()
