@@ -14,6 +14,8 @@ if ((new KAuthenticator())->attempt($attributes['email'],$attributes['password']
 
 $staticLoginForm->error('email','Bad credentials');
 
+return redirect('/login');
+
 
 
 
