@@ -1,6 +1,7 @@
 <?php
 
 use Core\Session;
+use Core\ValidationException;
 
 session_start();
 
@@ -30,9 +31,16 @@ $puri = parse_url($prequest)['path'];
 
 $pmethod = $_POST['_pseudoMethod'] ?? $_SERVER['REQUEST_METHOD'];
 
-$router->routeTheRequest($puri, $pmethod);
+try {
+	$router->route($puri, $pmethod);
+}
+catch (ValidationException $ve) {
+	Session::flash('errors', $ve->errors);
+	Session::flash('old',    $ve->old);
 
-//unset($_SESSION['_flash']);
+	return redirect($router->previousUrl());
+}
+
 Session::unflash();
 
 

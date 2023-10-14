@@ -44,7 +44,7 @@ class Router
 		return $this; // not needed; potential for more chaining
 	}
 
-	public function routeTheRequest($puri, $pmethod)
+	public function route($puri, $pmethod)
 	{
 		foreach ($this->routes as $route)
 		{
@@ -60,6 +60,12 @@ class Router
 		}
 		$this->abort2();
 	}
+
+	public function previousUrl()
+	{
+		return $_SERVER['HTTP_REFERER'];
+	}
+
 	private function abort2($code = 404) {
 		http_response_code($code);      						// SET the http response code
 		require basepath("views/{$code}.php");		// Need a page for each one
