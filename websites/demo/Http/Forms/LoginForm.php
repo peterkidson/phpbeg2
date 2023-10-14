@@ -25,11 +25,12 @@ class LoginForm
 	public static function validate($attributes)
 	{
 		$staticLoginForm = new static($attributes);
-		if ($staticLoginForm->failed()) {
+		return $staticLoginForm->failed() ?	$staticLoginForm->throw() : $staticLoginForm;
+	}
 
-			ValidationException::throw($staticLoginForm->errors(),$staticLoginForm->attributes);
-		}
-		return $staticLoginForm;
+	public function throw()
+	{
+		ValidationException::throw($this->errors(),$this->attributes);
 	}
 
 	public function failed()
@@ -45,6 +46,7 @@ class LoginForm
 	public function error($name,$message)
 	{
 		$this->errors[$name] = $message;
+		return $this;
 	}
 
 }

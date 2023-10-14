@@ -8,13 +8,16 @@ $staticLoginForm = LoginForm::validate($attributes = [
 	'password' => $_POST['password']
 ]);
 
-if ((new KAuthenticator())->attempt($attributes['email'],$attributes['password'])) {
-	redirect('/');
+$signedIn = (new KAuthenticator())->attempt($attributes['email'],$attributes['password']);
+
+if (!$signedIn) {
+	$staticLoginForm->error('email', 'Bad credentials')
+		->throw();
 }
 
-$staticLoginForm->error('email','Bad credentials');
+redirect('/');
 
-return redirect('/login');
+
 
 
 
