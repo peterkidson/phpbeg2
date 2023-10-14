@@ -10,8 +10,8 @@ class ValidationException extends \Exception
 	public static function throw($errors,$old)
 	{
 		$newStaticInstance = new static;
-		$newStaticInstance->errors = $errors;
-		$newStaticInstance->old = $old;
+		$newStaticInstance->errors	= $errors;
+		$newStaticInstance->old		= $old;
 		throw $newStaticInstance;
 	}
 }
